@@ -1,0 +1,6 @@
+---
+steamcmd_user: steam
+steamcmd_group: steam
+steamcmd_directory: /home/{{ steamcmd_user }}/steamcmd/
+valheim_directory: '/home/{{ steamcmd_user }}/valheimserver'
+

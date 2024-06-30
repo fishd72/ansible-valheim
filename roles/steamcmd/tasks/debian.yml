@@ -1,0 +1,7 @@
+---
+- name: Install package requirements
+  ansible.builtin.apt:
+    name: "{{ steamcmd_deps }}"
+    state: present
+  become: true
+

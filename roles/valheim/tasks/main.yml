@@ -1,0 +1,6 @@
+---
+- name: Install Valheim dedicated server
+  ansible.builtin.shell: '{{ steamcmd_directory }}steamcmd.sh +login anonymous +force_install_dir {{ valheim_directory }} +app_update {{ valheim_id }} validate +exit'
+  become: true
+  become_user: '{{ steamcmd_user }}'
+

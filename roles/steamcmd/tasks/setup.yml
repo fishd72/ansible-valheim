@@ -1,0 +1,15 @@
+---
+- name: Check steamcmd is already where it should be
+  stat:
+    path: "{{ steamcmd_directory }}steamcmd.sh"
+  register: stat_steamcmd_result
+
+- name: Attempt to log into steam anonymously
+  command: "{{ steamcmd_directory }}steamcmd.sh +quit"
+  async: "{{ steamcmd_login_timeout}}"
+  poll: 5
+  register: output
+  when: steamcmd_steam.username == "anonymous"
+  become: true
+  become_user: '{{ steamcmd_user }}'
+

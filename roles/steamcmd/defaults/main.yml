@@ -1,0 +1,10 @@
+---
+steamcmd_user: steam
+steamcmd_group: steam
+steamcmd_directory: /home/{{ steamcmd_user }}/steamcmd/
+steamcmd_url: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+steamcmd_login_timeout: 120
+steamcmd_steam:
+  username: anonymous
+  password: ~
+  guard: ~

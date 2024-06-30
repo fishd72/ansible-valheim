@@ -1,0 +1,27 @@
+---
+- name: Include distro dependent variables
+  ansible.builtin.include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+      - '{{ ansible_distribution | lower }}.yml'
+      skip: yes
+
+- name: Create user account
+  ansible.builtin.include_tasks:
+    file: user.yml
+
+- name: Install dependancies via distro dependent tasks
+  ansible.builtin.include_tasks: '{{ item }}'
+  with_first_found:
+    - files:
+      - '{{ ansible_distribution | lower }}.yml'
+      skip: yes
+
+- name: Install steamcmd
+  ansible.builtin.include_tasks:
+    file: install.yml
+
+- name: Setup steamcmd
+  ansible.builtin.include_tasks:
+    file: setup.yml
+

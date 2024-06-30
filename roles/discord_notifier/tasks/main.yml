@@ -1,0 +1,26 @@
+---
+- name: Determine latest version number
+  community.general.github_release:
+    user: cryptiklemur
+    repo: valheim-discord-notifier
+    action: latest_release
+  register: notifier_latest
+  delegate_to: localhost
+
+- name: Download plugin to tmp 
+  ansible.builtin.unarchive:
+    src: "https://github.com/cryptiklemur/valheim-discord-notifier/releases/download/{{ notifier_latest['tag'] }}/DiscordNotifier.zip"
+    dest: /tmp/
+    remote_src: true
+  become: true
+
+- name: Copy plugin to correct folder
+  ansible.builtin.copy:
+    src: /tmp/DiscordNotifier/
+    dest: "{{ valheim_directory }}/BepInEx/plugins/DiscordNotifier/"
+    owner: "{{ steamcmd_user }}"
+    group: "{{ steamcmd_group }}"
+    mode: '0755'
+    remote_src: true
+  become: true
+

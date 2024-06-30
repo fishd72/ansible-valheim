@@ -1,0 +1,6 @@
+---
+steamcmd_deps: 
+  - lib32gcc-s1
+  - acl
+  - unzip
+

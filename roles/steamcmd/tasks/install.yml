@@ -1,0 +1,19 @@
+---
+- name: Create steamcmd directory
+  ansible.builtin.file:
+    path: "{{ steamcmd_directory }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ steamcmd_user }}"
+    group: "{{ steamcmd_group }}"
+  become: true
+
+- name: Download and extract steamcmd 
+  ansible.builtin.unarchive:
+    src: '{{ steamcmd_url }}' 
+    dest: "{{ steamcmd_directory }}"
+    remote_src: yes
+    owner: "{{ steamcmd_user }}"
+    group: "{{ steamcmd_group }}"
+  become: true
+

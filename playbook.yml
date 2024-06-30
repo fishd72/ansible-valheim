@@ -1,0 +1,20 @@
+---
+- hosts: servers
+
+  tasks: 
+    - name: Install steamcmd
+      ansible.builtin.include_role:
+        name: steamcmd
+
+    - name: Install Valheim server
+      ansible.builtin.include_role:
+        name: valheim
+
+    - name: Install BepInEx
+      ansible.builtin.include_role:
+        name: BepInEx
+
+    - name: Install Discord Notifier plugin
+      ansible.builtin.include_role:
+        name: discord_notifier
+

@@ -1,0 +1,17 @@
+---
+- name: Ensure user group is present
+  ansible.builtin.group:
+    name: '{{ steamcmd_group }}'
+    state: present
+  become: true
+
+- name: Ensure user account is present
+  ansible.builtin.user:
+    name: '{{ steamcmd_user }}'
+    comment: 'Steam CMD User'
+    create_home: true
+    groups: '{{ steamcmd_group }}'
+    append: true
+    shell: /bin/bash
+  become: true
+

@@ -1,0 +1,4 @@
+---
+valheim_directory: '/home/{{ steamcmd_user }}/valheimserver'
+valheim_id: 896660
+

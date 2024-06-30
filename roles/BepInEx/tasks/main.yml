@@ -1,0 +1,17 @@
+---
+- name: Determine latest version number
+  community.general.github_release:
+    user: BepInEx
+    repo: BepInEx
+    action: latest_release
+  register: bepinex_latest
+  delegate_to: localhost
+
+- name: Extract BepInEx to server directory
+  ansible.builtin.unarchive:
+    src: "https://github.com/BepInEx/BepInEx/releases/download/{{ bepinex_latest['tag'] }}/BepInEx_linux_x64_{{ bepinex_latest['tag'] | regex_replace('^v','') }}.zip"
+    dest: '{{ valheim_directory }}'
+    remote_src: true
+  become: true
+  become_user: '{{ steamcmd_user }}'
+
